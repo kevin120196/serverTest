@@ -1,6 +1,6 @@
 const db = require('../../DB/mysql');
 
-const TABLA = 'clientes';
+const TABLA = 'visitas_taller';
 
 function todos(){
     return db.index(TABLA);

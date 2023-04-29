@@ -4,9 +4,10 @@ const respuesta = require('../../red/respuesta');
 const controlador = require('./controlador')
 router.get('/',function (req,res) {
 
-    const todos = controlador.todos();
-
-    respuesta.success(req,res,todos,200)
+    const todos = controlador.todos()
+    .then((item)=>{
+        respuesta.success(req,res,item,200)
+    })
 });
 
 module.exports = router;
