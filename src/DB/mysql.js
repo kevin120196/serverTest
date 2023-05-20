@@ -37,15 +37,19 @@ conmysql();
 function index(tabla){
     return new Promise((resolve,reject)=>{
         conexion.query(`SELECT * FROM ${tabla}`,(err,result)=>{
-            if (err) return reject (err)
-            resolve(result); 
+            return err ? reject (err) : resolve(result);
             console.log(result)
         })
     })
 }
 
 function show(tabla, id){
-
+    return new Promise((resolve,reject)=>{
+        conexion.query(`SELECT * FROM ${tabla} WHERE id = ${id}`,(err,result)=>{
+            return err ? reject (err) : resolve(result);
+            console.log(result)
+        })
+    })
 }
 
 function create(tabla, datos){
@@ -53,8 +57,13 @@ function create(tabla, datos){
 
 }
 
-function borrar(tabla, id){
-
+function borrar(tabla, data){
+    return new Promise((resolve,reject)=>{
+        conexion.query(`DELETE FROM ${tabla} WHERE id = ?`,data.id,(err,result)=>{
+            return err ? reject (err) : resolve(result); 
+            console.log(result)
+        })
+    })
 }
 
 module.exports = {
